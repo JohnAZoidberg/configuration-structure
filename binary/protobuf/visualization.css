@@ -1,0 +1,43 @@
+#binary, #schema, #values, #explanations, .schema {
+  font-family: monospace;
+}
+
+#content {
+  display: flex;
+}
+
+#content > div {
+  flex: 0 0 25%;
+}
+
+.index {
+  color: grey;
+}
+
+.explanation {
+  display: none;
+  border-style: solid;
+  padding: 1em;
+  margin-bottom: 2em;
+}
+
+.visible {
+  display: block;
+}
+
+.byte:hover, .region:hover, .bold {
+  cursor: pointer;
+  font-weight: bold;
+  background-color: lightgray;
+}
+
+.selected {
+  color: white;
+  background-color: orange;
+}
+
+/*
+.region {
+  text-decoration: underline;
+}
+*/
