@@ -1,3 +1,20 @@
+// Highlight indented blocks
+for (const element of document.getElementsByClassName("indent")) {
+  if (!element.classList.contains("region")) {
+    continue;
+  }
+
+  element.addEventListener("mouseover", event => {
+    element.classList.add("hovering");
+    event.stopPropagation();
+  }); 
+  element.addEventListener("mouseout", event => {
+    element.classList.remove("hovering");
+    event.stopPropagation();
+  });
+}
+
+// Highlight individual bytes and their explanation
 for (let i = 0; i < 242; i++) {
   const byteElement = document.getElementById(`byte${i}`);
   const expElement = document.getElementById(`exp${i.toString(16)}`);
@@ -13,13 +30,15 @@ for (let i = 0; i < 242; i++) {
   }); 
 }
 
+// Highlight regions, and their bytes and explanations
 for (const element of document.getElementsByClassName("region")) {
+  // FIXME: This only works when the r-?-? class is in the second place
   const regionClass = element.classList[1];
   const [foo, startStr, endStr] = regionClass.split("-");
   const start = parseInt(startStr);
   const end = parseInt(endStr);
 
-  element.addEventListener("mouseenter", event => {
+  element.addEventListener("mouseover", event => {
     for (let i = start; i <= end; i++) {
       const byteElement = document.getElementById(`byte${i}`);
       byteElement.classList.add("selected");
@@ -27,8 +46,9 @@ for (const element of document.getElementsByClassName("region")) {
       const expElement = document.getElementById(`exp${i}`);
       if (expElement != null) expElement.classList.add("visible");
     }
+    event.stopPropagation();
   }); 
-  element.addEventListener("mouseleave", event => {
+  element.addEventListener("mouseout", event => {
     for (let i = start; i <= end; i++) {
       const byteElement = document.getElementById(`byte${i}`);
       byteElement.classList.remove("selected");
@@ -36,6 +56,7 @@ for (const element of document.getElementsByClassName("region")) {
       const expElement = document.getElementById(`exp${i}`);
       if (expElement != null) expElement.classList.remove("visible");
     }
+    event.stopPropagation();
   }); 
 }
 

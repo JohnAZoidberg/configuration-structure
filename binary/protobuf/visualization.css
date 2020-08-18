@@ -25,7 +25,7 @@
   display: block;
 }
 
-.byte:hover, .region:hover, .bold {
+.byte:hover, .region:hover:not(.indent), .bold {
   cursor: pointer;
   font-weight: bold;
   background-color: lightgray;
@@ -36,8 +36,12 @@
   background-color: orange;
 }
 
-/*
-.region {
-  text-decoration: underline;
+.indent {
+  padding-left: 1em;
 }
-*/
+
+.indent.hovering.region {
+  background-color: super;
+  border-style: solid;
+  border-width: 1px;
+}
